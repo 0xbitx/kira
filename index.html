@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Kira is a local-first web exploitation suite for Linux: an intercepting HTTPS proxy, Repeater, Intruder, 54 vulnerability checks, 32 recon modules, 1,053 payloads and an opt-in AI analyst. No account, no telemetry, no cloud.">
+    <meta property="og:title" content="Kira - Web Exploitation Suite">
+    <meta property="og:description" content="Intercept, replay, fuzz and attack web traffic from a native Linux workbench. Local-first, self-contained, and built for authorized security testing.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="static/logo.png">
+    <meta name="twitter:card" content="summary">
+    <title>Kira - Web Exploitation Suite</title>
+    <link rel="icon" href="static/logo.png" type="image/png">
+    <link rel="stylesheet" href="site.css">
+    <script>document.documentElement.classList.add('js');</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Kira",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Linux",
+        "softwareVersion": "1.0.0",
+        "description": "A web exploitation suite with an intercepting HTTPS proxy, Repeater, Intruder, vulnerability and recon scanners, payloads and an AI analyst.",
+        "author": {
+            "@type": "Person",
+            "name": "0xbit",
+            "url": "https://github.com/0xbitx"
+        }
+    }
+    </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+    <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="Kira home">
+            <img src="static/logo.png" alt="" width="32" height="37">
+            <span class="brand-text">
+                <span class="brand-name">Kira</span>
+                <span class="brand-sub">Web Exploitation Suite</span>
+            </span>
+        </a>
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+            <a href="#overview">Overview</a>
+            <a href="#workbench">Workbench</a>
+            <a href="#scanner">Scanner</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#install">Install</a>
+            <a href="#privacy">Privacy</a>
+            <a href="https://github.com/0xbitx" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn-primary btn-sm nav-dl" href="https://github.com/0xbitx/kira/kira" data-download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                Download
+            </a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<main id="main">
+    <section class="hero" aria-labelledby="heroTitle">
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> v1.0.0 &middot; Linux x86-64 &middot; Local-first</p>
+                <h1 id="heroTitle">Intercept.<br>Replay.<br><span class="accent">Exploit.</span></h1>
+                <p class="hero-lead">Kira is a web exploitation suite for Linux. It puts an intercepting HTTPS proxy and a full offensive workbench on your desktop: capture, inspect, replay, fuzz and attack every request, then keep the whole engagement in its own project. No account. No telemetry. No cloud.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="https://github.com/0xbitx/kira/kira" data-download>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        Download for Linux
+                    </a>
+                    <a class="btn btn-ghost" href="#install">Install with curl</a>
+                </div>
+                <ul class="hero-meta" aria-label="Highlights">
+                    <li>Self-contained ELF</li>
+                    <li>GTK 3 + WebKitGTK 4.1</li>
+                    <li>No account</li>
+                    <li>No telemetry</li>
+                </ul>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-glow" aria-hidden="true"></div>
+                <div class="term term-hero">
+                    <div class="term-bar">
+                        <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span class="term-title">kira &middot; install</span>
+                        <button class="term-copy" type="button" data-copy-target="#heroCommands" aria-label="Copy install commands">Copy</button>
+                    </div>
+                    <div class="term-body" id="heroCommands">
+                        <div class="term-line comment"># download the latest Linux release</div>
+                        <div class="term-line"><span class="prompt">$</span>curl -LO https://github.com/0xbitx/kira/kira</div>
+                        <div class="term-line comment"># make it executable and launch</div>
+                        <div class="term-line"><span class="prompt">$</span>chmod +x kira &amp;&amp; ./kira</div>
+                        <div class="term-line term-gap" aria-hidden="true"></div>
+                        <div class="term-line ok">&#10003; dashboard&nbsp; http://127.0.0.1:8787/</div>
+                        <div class="term-line ok">&#10003; proxy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://127.0.0.1:8080</div>
+                        <div class="term-line dim">GTK 3 + WebKitGTK 4.1 required<span class="cursor" aria-hidden="true"></span></div>
+                    </div>
+                </div>
+                <span class="float-chip float-chip-1">SSE live capture</span>
+                <span class="float-chip float-chip-2">HAR 1.2</span>
+            </div>
+        </div>
+
+        <div class="container stats" aria-label="Kira at a glance">
+            <div class="stat">
+                <span class="stat-num">54</span>
+                <span class="stat-label">web vulnerability checks</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">32</span>
+                <span class="stat-label">reconnaissance modules</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">1,053</span>
+                <span class="stat-label">manual payloads</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">64</span>
+                <span class="stat-label">payload categories</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="overview" aria-labelledby="overviewTitle">
+        <div class="container overview-grid">
+            <div class="overview-copy reveal">
+                <p class="kicker">What it is</p>
+                <h2 id="overviewTitle">A full offensive workbench, built around the request.</h2>
+                <p class="lead">Kira sits between your browser and the target as a local HTTPS proxy. Trust the mitmproxy CA once, and every request and response is decrypted, captured and streamed into a native desktop window. Headers, bodies, status codes, timings, TLS details, cookies, query parameters and WebSocket frames are all available for inspection.</p>
+                <p>From there the workbench takes over. Pause traffic with Intercept, replay and edit it in Repeater, fuzz it with Intruder, run 54 vulnerability checks and 32 recon modules, map the application, capture OAST callbacks and document findings in Notes. Projects keep each engagement separate, on disk or in memory.</p>
+                <div class="pill-row" aria-label="Main tools">
+                    <span>Intercepting proxy</span>
+                    <span>Repeater</span>
+                    <span>Intruder</span>
+                    <span>Scanner</span>
+                    <span>Site map</span>
+                    <span>Payloads</span>
+                    <span>AI analyst</span>
+                </div>
+            </div>
+
+            <aside class="spec-card reveal" aria-labelledby="specTitle">
+                <p class="spec-head" id="specTitle">At a glance</p>
+                <dl class="spec-list">
+                    <div><dt>Proxy</dt><dd><code>127.0.0.1:8080</code></dd></div>
+                    <div><dt>Dashboard</dt><dd><code>127.0.0.1:8787</code></dd></div>
+                    <div><dt>Runtime</dt><dd>Single Linux x86-64 ELF</dd></div>
+                    <div><dt>Desktop</dt><dd>GTK 3 + WebKitGTK 4.1</dd></div>
+                    <div><dt>Storage</dt><dd>Local projects, JSONL</dd></div>
+                    <div><dt>Telemetry</dt><dd>None</dd></div>
+                    <div><dt>AI</dt><dd>Opt-in, OpenAI-compatible</dd></div>
+                </dl>
+                <p class="spec-note">Binds to loopback by default. LAN access is possible, but the dashboard has no login and no TLS on the listener.</p>
+            </aside>
+        </div>
+    </section>
+
+    <section class="section section-workbench" id="workbench" aria-labelledby="workbenchTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">The workbench</p>
+                    <h2 id="workbenchTitle">See every request. Change any of it.</h2>
+                </div>
+                <p class="section-note">A native dashboard with the speed of a terminal and the detail of a full intercepting proxy.</p>
+            </div>
+
+            <div class="mock-wrap reveal">
+                <div class="mock-app" role="img" aria-label="Preview of the Kira dashboard showing captured requests, a live proxy indicator and a request inspector">
+                    <div class="mock-top">
+                        <div class="mock-brand">
+                            <img src="static/logo.png" alt="" width="24" height="27">
+                            <span>Kira</span>
+                        </div>
+                        <div class="mock-top-right">
+                            <span class="live-pill"><i aria-hidden="true"></i> LIVE</span>
+                            <span class="mock-proxy">proxy <code>127.0.0.1:8080</code></span>
+                        </div>
+                    </div>
+                    <div class="mock-body">
+                        <div class="mock-side" aria-hidden="true">
+                            <span class="mock-side-item active">Proxy</span>
+                            <span class="mock-side-item">Intercept</span>
+                            <span class="mock-side-item">Repeater</span>
+                            <span class="mock-side-item">Intruder</span>
+                            <span class="mock-side-item">Scanner</span>
+                            <span class="mock-side-item">Site map</span>
+                            <span class="mock-side-item">Decoder</span>
+                            <span class="mock-side-item">Comparer</span>
+                            <span class="mock-side-item">Terminal</span>
+                            <span class="mock-side-item">Notes</span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="mock-toolbar" aria-hidden="true">
+                                <span class="mock-filter">Filter requests, URLs, headers...</span>
+                                <span class="mock-chip">GET</span>
+                                <span class="mock-chip">2xx</span>
+                                <span class="mock-chip">HTML</span>
+                            </div>
+                            <div class="mock-table" aria-hidden="true">
+                                <div class="mock-row mock-row-head">
+                                    <span>Method</span><span>Host</span><span>Path</span><span>Status</span><span>Size</span>
+                                </div>
+                                <div class="mock-row">
+                                    <span class="m get">GET</span><span>app.target.test</span><span>/login</span><span class="s ok">200</span><span>4.2 KB</span>
+                                </div>
+                                <div class="mock-row is-active">
+                                    <span class="m post">POST</span><span>app.target.test</span><span>/api/session</span><span class="s warn">302</span><span>0.6 KB</span>
+                                </div>
+                                <div class="mock-row">
+                                    <span class="m get">GET</span><span>app.target.test</span><span>/dashboard</span><span class="s ok">200</span><span>18.4 KB</span>
+                                </div>
+                                <div class="mock-row">
+                                    <span class="m get">GET</span><span>cdn.target.test</span><span>/app.js</span><span class="s ok">200</span><span>91.2 KB</span>
+                                </div>
+                                <div class="mock-row">
+                                    <span class="m put">PUT</span><span>api.target.test</span><span>/v1/profile</span><span class="s err">403</span><span>0.3 KB</span>
+                                </div>
+                            </div>
+                            <div class="mock-inspector">
+                                <div class="mock-inspector-head" aria-hidden="true">
+                                    <span class="active">Request</span><span>Response</span><span>Raw</span><span>Headers</span>
+                                </div>
+                                <pre>POST /api/session HTTP/1.1
+Host: app.target.test
+Authorization: Bearer eyJhbGciOi...
+Content-Type: application/json
+
+{"username":"admin","password":"..."}</pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mock-foot">
+                        <span>5,000 flows</span>
+                        <span>SSE</span>
+                        <span>HAR 1.2</span>
+                        <span>WebSocket</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-chips reveal" aria-label="Workbench capabilities">
+                <span>Live capture over SSE</span>
+                <span>Byte-exact Raw HTTP</span>
+                <span>HAR 1.2 export</span>
+                <span>WebSocket frames</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="features" aria-labelledby="featuresTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Toolbox</p>
+                    <h2 id="featuresTitle">Everything after the intercept.</h2>
+                </div>
+                <p class="section-note">One window for the full offensive loop, from first capture to final note.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card reveal">
+                    <span class="feature-num">01</span>
+                    <h3>Capture &amp; inspector</h3>
+                    <p>Live flows stream in over Server-Sent Events. Search, filter by method, status or resource type, pause and follow live, then open any request for headers, bodies, timings, TLS details, cookies, query parameters and WebSocket frames. Copy as cURL or export the capture as HAR 1.2.</p>
+                    <div class="tags"><span>SSE</span><span>HAR 1.2</span><span>WebSocket</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">02</span>
+                    <h3>Intercept</h3>
+                    <p>Arm the queue and new proxied requests pause before they are forwarded. Continue, drop or edit them one at a time or in bulk. Replayed requests from the other tools bypass the queue.</p>
+                    <div class="tags"><span>queue</span><span>edit</span><span>drop</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">03</span>
+                    <h3>Repeater</h3>
+                    <p>Independent tabs with side-by-side request and response editing, redirect following, diffing, per-tab history, shared variables, rewrite rules and repeat/timing runs. Raw HTTP mode sends byte-exact requests for duplicate headers, HTTP/1.0, pipelining and request-smuggling probes.</p>
+                    <div class="tags"><span>Raw HTTP</span><span>diff</span><span>variables</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">04</span>
+                    <h3>Intruder</h3>
+                    <p>Sniper, Battering ram, Pitchfork and Cluster bomb attacks. Results stream in while the attack runs, with thread control, delays, encoding, match/regex filters, baseline diffing, redirect handling and soft-404 detection.</p>
+                    <div class="tags"><span>4 attack types</span><span>streaming</span><span>filters</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">05</span>
+                    <h3>Scanner</h3>
+                    <p>54 web vulnerability checks and 32 reconnaissance modules, with presets for core, web, API, SQLi, CMS, WAF, technology and recon work. Run checks in parallel, reuse captured sessions and cookies, route through Tor or a custom proxy, and supply per-scan API keys.</p>
+                    <div class="tags"><span>54 checks</span><span>32 modules</span><span>presets</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">06</span>
+                    <h3>Site map</h3>
+                    <p>Captured traffic grouped by origin, directory, method and path. Crawl same-origin links, probe about 150 hidden paths, filter soft-404 responses and export the map as JSON.</p>
+                    <div class="tags"><span>crawl</span><span>150 paths</span><span>JSON</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">07</span>
+                    <h3>Payloads &amp; exploit toolkit</h3>
+                    <p>1,053 manual payloads in 64 categories with click-to-copy and Insert actions. OAST callbacks, PoCs, JWT/auth tooling, an Authorization matrix, fuzzing, mutations, GraphQL helpers and a Race lab for HTTP/1.1 last-byte sync and HTTP/2 single-packet attacks.</p>
+                    <div class="tags"><span>1,053 payloads</span><span>OAST</span><span>Race lab</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">08</span>
+                    <h3>Terminal &amp; Notes</h3>
+                    <p>A real PTY shell with tabs, split panes, persistent history and per-project command logs. Markdown notes with tags, Mermaid diagrams, request insertion and an AI writing assistant.</p>
+                    <div class="tags"><span>PTY</span><span>Markdown</span><span>Mermaid</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">09</span>
+                    <h3>AI analyst</h3>
+                    <p>An opt-in assistant that summarizes captures, hunts for suspicious requests, explains decrypted highlights and reads the active tool window. Works with OpenRouter, DeepSeek, local Ollama, LM Studio or any OpenAI-compatible endpoint.</p>
+                    <div class="tags"><span>opt-in</span><span>local models</span><span>streaming</span></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="scanner" aria-labelledby="scannerTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Scanner</p>
+                    <h2 id="scannerTitle">54 checks. 32 recon modules. One target.</h2>
+                </div>
+                <p class="section-note">Open the scanner from a captured request to reuse its session and cookies, or point it at any URL.</p>
+            </div>
+
+            <div class="scanner-grid">
+                <article class="scan-card reveal">
+                    <header>
+                        <span class="scan-num">54</span>
+                        <h3>Web vulnerability checks</h3>
+                    </header>
+                    <div class="tag-cloud" aria-label="Example vulnerability checks">
+                        <span>SQL injection</span>
+                        <span>NoSQL injection</span>
+                        <span>XSS</span>
+                        <span>SSTI</span>
+                        <span>SSRF</span>
+                        <span>XXE</span>
+                        <span>LFI / RFI</span>
+                        <span>Command injection</span>
+                        <span>CRLF</span>
+                        <span>Host header</span>
+                        <span>CORS</span>
+                        <span>CSRF</span>
+                        <span>IDOR</span>
+                        <span>Open redirect</span>
+                        <span>JWT</span>
+                        <span>OAuth</span>
+                        <span>Web cache deception</span>
+                        <span>WebDAV</span>
+                        <span>Shellshock</span>
+                        <span>PHP injection</span>
+                        <span>Deserialization</span>
+                        <span>Prototype pollution</span>
+                        <span>Directory listing</span>
+                        <span>Sensitive files</span>
+                        <span>Backup files</span>
+                        <span>Dotfiles</span>
+                        <span>SQL dumps</span>
+                        <span>WAF detection</span>
+                        <span>Clickjacking</span>
+                        <span>CSP grading</span>
+                        <span>HSTS grading</span>
+                        <span>Cookie flags</span>
+                        <span>Security headers</span>
+                        <span>Technology fingerprint</span>
+                    </div>
+                </article>
+
+                <article class="scan-card reveal">
+                    <header>
+                        <span class="scan-num">32</span>
+                        <h3>Reconnaissance modules</h3>
+                    </header>
+                    <div class="tag-cloud" aria-label="Example reconnaissance modules">
+                        <span>DNS records</span>
+                        <span>WHOIS</span>
+                        <span>IP / geolocation</span>
+                        <span>ASN / network</span>
+                        <span>TLS certificate</span>
+                        <span>Cipher probing</span>
+                        <span>Server / CDN</span>
+                        <span>HTTP methods</span>
+                        <span>Port scan</span>
+                        <span>Banners</span>
+                        <span>Service audit</span>
+                        <span>Subdomains</span>
+                        <span>Reverse IP</span>
+                        <span>Shared DNS</span>
+                        <span>Zone transfer</span>
+                        <span>Subdomain takeover</span>
+                        <span>Email security</span>
+                        <span>Email harvesting</span>
+                        <span>Wayback</span>
+                        <span>security.txt</span>
+                        <span>Shodan InternetDB</span>
+                        <span>Passive DNS</span>
+                        <span>Traceroute</span>
+                        <span>Threat intel / DNSBL</span>
+                        <span>Tor exit</span>
+                        <span>DuckDuckGo dorking</span>
+                        <span>Account aliases</span>
+                        <span>Local network</span>
+                        <span>Honeypot scoring</span>
+                        <span>Default credentials</span>
+                        <span>OS fingerprint</span>
+                        <span>Cloudflare origin</span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="preset-row reveal" aria-label="Scanner presets">
+                <span>Presets</span>
+                <span class="preset">Core</span>
+                <span class="preset">Web</span>
+                <span class="preset">API</span>
+                <span class="preset">SQLi</span>
+                <span class="preset">CMS</span>
+                <span class="preset">WAF</span>
+                <span class="preset">Tech</span>
+                <span class="preset">Recon</span>
+                <span class="preset">All</span>
+                <span class="preset">None</span>
+            </div>
+            <p class="scan-note reveal">Checks that need a missing optional tool report why they were skipped instead of failing the run. Third-party lookups (Shodan, HIBP, URLhaus) are optional; default-credential, nmap OS and Cloudflare origin probes are explicitly opt-in.</p>
+        </div>
+    </section>
+
+    <section class="section" id="screenshots" aria-labelledby="screenshotsTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Screenshots</p>
+                    <h2 id="screenshotsTitle">The workbench, up close.</h2>
+                </div>
+                <p class="section-note">Fourteen views of the proxy, workbench and scanner in the native Linux window. Click any shot to open it full size.</p>
+            </div>
+
+            <div class="shot-grid">
+                <figure class="shot-card shot-card-featured reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_214602.png" target="_blank" rel="noopener noreferrer" title="Open the live traffic screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_214602.png" alt="Kira proxy traffic list with captured HTTPS requests and the selected flow's headers, cookies and TLS details" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Proxy</span>
+                        <h3>Live traffic and flow details</h3>
+                        <p>Filter captured requests and read headers, cookies, highlights, timing and TLS details.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_214701.png" target="_blank" rel="noopener noreferrer" title="Open the flow actions screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_214701.png" alt="Context menu on a captured request with actions to open it in Repeater, Intruder, Decoder, Comparator or the scanner" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Workbench</span>
+                        <h3>Send any request anywhere</h3>
+                        <p>Right-click a flow to open it in Repeater, Intruder, Decoder, Comparator or the scanner.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_214725.png" target="_blank" rel="noopener noreferrer" title="Open the projects screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_214725.png" alt="Kira project launcher with create, rename and temporary project options" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Projects</span>
+                        <h3>One project per engagement</h3>
+                        <p>Create a saved project or start a temporary in-memory one. Nothing is recorded until a project is open.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_215038.png" target="_blank" rel="noopener noreferrer" title="Open the Repeater screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_215038.png" alt="Kira Repeater with an editable request, response headers and history controls" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Repeater</span>
+                        <h3>Replay and edit requests</h3>
+                        <p>Change any part of a request, send it, and inspect the response with diff and preview views.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_220611.png" target="_blank" rel="noopener noreferrer" title="Open the Decoder screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_220611.png" alt="Kira Decoder showing a Base64 string decoded into readable text with hash and encoding options" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Decoder</span>
+                        <h3>Decode and inspect data</h3>
+                        <p>Auto-decode Base64, hex, URL and gzip, then identify hashes or ask the AI what the data means.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_215100.png" target="_blank" rel="noopener noreferrer" title="Open the payload library screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_215100.png" alt="Kira payload library with 1,053 payloads across 64 categories and an AI payload crafter" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Payloads</span>
+                        <h3>1,053 payloads, 64 categories</h3>
+                        <p>Search the payload library or describe a target and let the AI payload crafter generate one.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_221902.png" target="_blank" rel="noopener noreferrer" title="Open the exploitation toolkit screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_221902.png" alt="Kira exploitation toolkit JWT tab with a decoded token, header and payload, HMAC secret testing and algorithm-confusion tools" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Exploitation toolkit</span>
+                        <h3>Break JWTs and more</h3>
+                        <p>Decode and rebuild JWTs, test weak HMAC secrets and algorithm confusion, then patch the token back into the request.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_215142.png" target="_blank" rel="noopener noreferrer" title="Open the Comparator screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_215142.png" alt="Kira Comparator showing a line-by-line diff between two HTTP responses" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Comparator</span>
+                        <h3>Diff two responses</h3>
+                        <p>Compare two flows line by line to spot changed headers, bodies and status codes.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_215323.png" target="_blank" rel="noopener noreferrer" title="Open the Intruder screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_215323.png" alt="Kira Intruder running a sniper attack with payload results, status codes and response previews" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Intruder</span>
+                        <h3>Fuzz with live results</h3>
+                        <p>Run sniper attacks across payload sets and compare status, size, time and response diffs.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_215416.png" target="_blank" rel="noopener noreferrer" title="Open the terminal screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_215416.png" alt="Kira terminal with parallel tabs running nmap, ping and curl" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Terminal</span>
+                        <h3>Shell and tools in parallel</h3>
+                        <p>Run nmap, ping, curl or any command in split terminals without leaving the window.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_215501.png" target="_blank" rel="noopener noreferrer" title="Open the site map screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_215501.png" alt="Kira site map showing discovered hosts, URLs and a request and response preview" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Site map</span>
+                        <h3>Map what you find</h3>
+                        <p>Crawl and discover URLs, then preview, replay or export the map.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_215527.png" target="_blank" rel="noopener noreferrer" title="Open the vulnerability scan screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_215527.png" alt="Kira vulnerability scanner with 54 checks, presets and per-check descriptions" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Scanner</span>
+                        <h3>54 checks with presets</h3>
+                        <p>Pick vulnerability checks by preset or individually, with a description for every check.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_215549.png" target="_blank" rel="noopener noreferrer" title="Open the notes screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_215549.png" alt="Kira notes editor with Markdown formatting and an AI analyst panel" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Notes</span>
+                        <h3>Write the finding</h3>
+                        <p>Keep Markdown notes per project and ask the AI analyst to summarize or suggest next tests.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card shot-card-featured reveal">
+                    <a class="shot-link" href="screenshots/Screenshot_20261120_220647.png" target="_blank" rel="noopener noreferrer" title="Open the AI analyst screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/Screenshot_20261120_220647.png" alt="Kira AI analyst chat with captured flow context, model selection and suggested security prompts" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">AI analyst</span>
+                        <h3>Ask the capture</h3>
+                        <p>Send flow context to a local or third-party model for a vulnerability sweep, a verdict or a fix.</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="install" aria-labelledby="installTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Install</p>
+                    <h2 id="installTitle">One binary. One terminal.</h2>
+                </div>
+                <p class="section-note">No installer, no package manager, no runtime. Download, make it executable, run.</p>
+            </div>
+
+            <div class="install-grid">
+                <div class="install-steps reveal">
+                    <ol class="steps">
+                        <li>
+                            <span class="step-num">01</span>
+                            <div>
+                                <h3>Get the binary</h3>
+                                <p>Download the Linux x86-64 release, or copy the curl command. The ELF carries the proxy, dashboard, scanner and recon engines.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">02</span>
+                            <div>
+                                <h3>Install the desktop stack</h3>
+                                <p>GTK 3 and WebKitGTK 4.1 are the only system libraries. Install them for your distribution:</p>
+                                <div class="dep-cmds">
+                                    <p><span>Debian / Ubuntu / Kali</span> <code>sudo apt install libgtk-3-0 gir1.2-webkit2-4.1</code></p>
+                                    <p><span>Fedora</span> <code>sudo dnf install gtk3 webkit2gtk4.1</code></p>
+                                    <p><span>Arch Linux</span> <code>sudo pacman -S gtk3 webkit2gtk-4.1</code></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">03</span>
+                            <div>
+                                <h3>Launch Kira</h3>
+                                <p>Run <code>./kira</code>. The dashboard opens at <code>127.0.0.1:8787</code> and the proxy listens on <code>127.0.0.1:8080</code>.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">04</span>
+                            <div>
+                                <h3>Trust the CA</h3>
+                                <p>Download the mitmproxy CA from the dashboard footer or <code>/api/cert</code>, then trust it in your browser. HTTPS is decrypted locally.</p>
+                            </div>
+                        </li>
+                    </ol>
+                    <p class="install-note"><strong>No runtime required.</strong> Kira does not need Python, Node.js, a proxy framework or a package manager on the target machine. GTK 3 and WebKitGTK 4.1 are the only external dependencies.</p>
+                </div>
+
+                <div class="term term-install reveal">
+                    <div class="term-bar">
+                        <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <div class="term-tabs" role="tablist" aria-label="Install commands">
+                            <button class="term-tab is-active" type="button" role="tab" aria-selected="true" data-term="download">download</button>
+                            <button class="term-tab" type="button" role="tab" aria-selected="false" data-term="debian">debian</button>
+                            <button class="term-tab" type="button" role="tab" aria-selected="false" data-term="fedora">fedora</button>
+                            <button class="term-tab" type="button" role="tab" aria-selected="false" data-term="arch">arch</button>
+                        </div>
+                        <button class="term-copy" type="button" data-copy-term aria-label="Copy the active terminal commands">Copy</button>
+                    </div>
+                    <div class="term-body">
+                        <pre class="term-pane is-active" data-pane="download"><span class="comment"># Kira v1.0.0, Linux x86-64</span>
+<span class="prompt">$</span> curl -LO https://github.com/0xbitx/kira/kira
+
+<span class="prompt">$</span> chmod +x kira
+<span class="prompt">$</span> ./kira
+
+<span class="comment"># dashboard  http://127.0.0.1:8787/</span>
+<span class="comment"># proxy      http://127.0.0.1:8080</span></pre>
+                        <pre class="term-pane" data-pane="debian"><span class="comment"># Debian, Ubuntu, Kali</span>
+<span class="prompt">$</span> sudo apt update
+<span class="prompt">$</span> sudo apt install libgtk-3-0 gir1.2-webkit2-4.1</pre>
+                        <pre class="term-pane" data-pane="fedora"><span class="comment"># Fedora</span>
+<span class="prompt">$</span> sudo dnf install gtk3 webkit2gtk4.1</pre>
+                        <pre class="term-pane" data-pane="arch"><span class="comment"># Arch Linux</span>
+<span class="prompt">$</span> sudo pacman -S gtk3 webkit2gtk-4.1</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="req-grid reveal" aria-label="Requirements">
+                <div><span>Platform</span><strong>Linux x86-64</strong></div>
+                <div><span>Desktop</span><strong>GTK 3 + WebKitGTK 4.1</strong></div>
+                <div><span>Session</span><strong>X11 or Wayland</strong></div>
+                <div><span>Proxy</span><strong>127.0.0.1:8080</strong></div>
+                <div><span>Dashboard</span><strong>127.0.0.1:8787</strong></div>
+                <div><span>Optional</span><strong>nmap, Tor</strong></div>
+            </div>
+
+            <div class="quick-head reveal">
+                <p class="kicker">After install</p>
+                <h3>From launch to a testable request</h3>
+            </div>
+            <div class="quick-grid">
+                <article class="quick-card reveal">
+                    <span class="step-num">01</span>
+                    <h3>Open a project</h3>
+                    <p>Create a saved project or start a temporary in-memory one. Traffic is not recorded until a project is open.</p>
+                </article>
+                <article class="quick-card reveal">
+                    <span class="step-num">02</span>
+                    <h3>Point your browser at the proxy</h3>
+                    <p>Set HTTP and HTTPS proxy to <code>127.0.0.1:8080</code>. Disable QUIC/HTTP3 if sites bypass the proxy.</p>
+                </article>
+                <article class="quick-card reveal">
+                    <span class="step-num">03</span>
+                    <h3>Browse the target</h3>
+                    <p>Captured requests appear immediately. Use search, filters and the inspector to find the interesting ones.</p>
+                </article>
+                <article class="quick-card reveal">
+                    <span class="step-num">04</span>
+                    <h3>Send it to the workbench</h3>
+                    <p>Replay in Repeater, fuzz in Intruder, scan the target, map the app or capture an OAST callback.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="privacy" aria-labelledby="privacyTitle">
+        <div class="container privacy-grid">
+            <div class="privacy-copy reveal">
+                <p class="kicker">Local by design</p>
+                <h2 id="privacyTitle">Your traffic stays on your machine.</h2>
+                <p class="lead">Projects, captures, bodies, notes, command logs and settings live on disk or in the browser under your control. There is no account, no telemetry and no cloud backend. The proxy and dashboard bind to loopback by default, and the dashboard uses a strict same-origin CSP.</p>
+                <p>The AI analyst is opt-in. Context is only sent to the provider you configure when you ask a question. Third-party recon checks such as Shodan, HIBP and URLhaus send target data to those services; default-credential checks, nmap OS fingerprinting and Cloudflare origin probes are explicitly opt-in.</p>
+                <p class="guardrails"><strong>Default guardrails:</strong> 5,000 flows in memory, 512 KiB body preview per message and 8 MiB maximum inspected body. Truncation and eviction are shown in the UI.</p>
+            </div>
+
+            <div class="privacy-cards">
+                <article class="privacy-card reveal">
+                    <h3>No cloud</h3>
+                    <p>No hosted service, no account and no telemetry. Nothing is hidden behind a subscription.</p>
+                </article>
+                <article class="privacy-card reveal">
+                    <h3>Loopback by default</h3>
+                    <p>The proxy and dashboard bind to <code>127.0.0.1</code>. LAN access is possible, but opt-in.</p>
+                </article>
+                <article class="privacy-card reveal">
+                    <h3>Opt-in AI</h3>
+                    <p>Local Ollama and LM Studio keep context on your machine. Third-party providers only see what you attach.</p>
+                </article>
+                <article class="privacy-card reveal">
+                    <h3>Text, not HTML</h3>
+                    <p>Captured values are rendered as text, and the dashboard stays same-origin under a strict CSP.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" aria-labelledby="ctaTitle">
+        <div class="container">
+            <div class="cta-inner reveal">
+                <img src="static/logo.png" alt="" width="72" height="82">
+                <div class="cta-copy">
+                    <p class="kicker">Get Kira</p>
+                    <h2 id="ctaTitle">Ready to test your next target?</h2>
+                    <p>Download the self-contained Linux build and start with a temporary project in under a minute.</p>
+                </div>
+                <div class="cta-actions">
+                    <a class="btn btn-primary" href="https://github.com/0xbitx/kira/kira" data-download>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        Download v1.0.0
+                    </a>
+                    <a class="btn btn-ghost" href="README.md">Read the docs</a>
+                </div>
+            </div>
+            <p class="cta-note">Linux x86-64 &middot; GTK 3 + WebKitGTK 4.1 &middot; X11 or Wayland &middot; For authorized testing only</p>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <a class="brand" href="#top" aria-label="Kira home">
+                <img src="static/logo.png" alt="" width="32" height="37">
+                <span class="brand-text">
+                    <span class="brand-name">Kira</span>
+                    <span class="brand-sub">Web Exploitation Suite</span>
+                </span>
+            </a>
+            <p>Web exploitation suite for Linux. Built for penetration tests, red teams, bug bounties, CTFs and security research.</p>
+            <p class="footer-warn">Use only on systems you own or have explicit written permission to test.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#overview">Overview</a>
+            <a href="#workbench">Workbench</a>
+            <a href="#scanner">Scanner</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#install">Install</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="README.md">Documentation</a>
+            <a href="https://github.com/0xbitx/kira" target="_blank" rel="noopener noreferrer">Source</a>
+            <a href="https://github.com/0xbitx/kira/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Creator</h4>
+            <a href="https://github.com/0xbitx" target="_blank" rel="noopener noreferrer">0xbit on GitHub</a>
+            <a href="https://mitmproxy.org/" target="_blank" rel="noopener noreferrer">mitmproxy</a>
+        </div>
+    </div>
+
+    <div class="container footer-bottom">
+        <span>&copy; <span id="year">2026</span> Kira &middot; Created by 0xbit</span>
+        <span>Authorized security testing only &middot; No telemetry &middot; Local-first</span>
+    </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
+<script src="site.js" defer></script>
+</body>
+</html>

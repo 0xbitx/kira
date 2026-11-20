@@ -153,19 +153,19 @@ your actions. See [Security and legal](#security-and-legal) before you start.
 | | |
 |:--:|:--:|
 | [![Live traffic and flow details](screenshots/Screenshot_20261120_214602.png)](screenshots/Screenshot_20261120_214602.png) | [![Send any request anywhere](screenshots/Screenshot_20261120_214701.png)](screenshots/Screenshot_20261120_214701.png) |
-| **Live traffic and flow details** — filter captured requests and read headers, cookies, highlights, timing and TLS details. | **Send any request anywhere** — right-click a flow to open it in Repeater, Intruder, Decoder, Comparator or the scanner. |
+| **Live traffic and flow details** - filter captured requests and read headers, cookies, highlights, timing and TLS details. | **Send any request anywhere** - right-click a flow to open it in Repeater, Intruder, Decoder, Comparator or the scanner. |
 | [![One project per engagement](screenshots/Screenshot_20261120_214725.png)](screenshots/Screenshot_20261120_214725.png) | [![Repeater](screenshots/Screenshot_20261120_215038.png)](screenshots/Screenshot_20261120_215038.png) |
-| **One project per engagement** — create a saved project or start a temporary in-memory one. | **Repeater** — edit and replay requests, with history, variables, rules and response diffing. |
+| **One project per engagement** - create a saved project or start a temporary in-memory one. | **Repeater** - edit and replay requests, with history, variables, rules and response diffing. |
 | [![Decoder](screenshots/Screenshot_20261120_220611.png)](screenshots/Screenshot_20261120_220611.png) | [![Payloads](screenshots/Screenshot_20261120_215100.png)](screenshots/Screenshot_20261120_215100.png) |
-| **Decoder** — auto-decode Base64, hex, URL and gzip, identify hashes and ask the AI about the data. | **Payloads** — search 1,053 payloads across 64 categories or generate one with the AI payload crafter. |
+| **Decoder** - auto-decode Base64, hex, URL and gzip, identify hashes and ask the AI about the data. | **Payloads** - search 1,053 payloads across 64 categories or generate one with the AI payload crafter. |
 | [![Exploitation toolkit](screenshots/Screenshot_20261120_221902.png)](screenshots/Screenshot_20261120_221902.png) | [![Comparator](screenshots/Screenshot_20261120_215142.png)](screenshots/Screenshot_20261120_215142.png) |
-| **Exploitation toolkit** — decode and rebuild JWTs, test HMAC secrets and algorithm confusion, then patch the token back into the request. | **Comparator** — diff two responses line by line to spot changed headers, bodies and status codes. |
+| **Exploitation toolkit** - decode and rebuild JWTs, test HMAC secrets and algorithm confusion, then patch the token back into the request. | **Comparator** - diff two responses line by line to spot changed headers, bodies and status codes. |
 | [![Intruder](screenshots/Screenshot_20261120_215323.png)](screenshots/Screenshot_20261120_215323.png) | [![Terminal](screenshots/Screenshot_20261120_215416.png)](screenshots/Screenshot_20261120_215416.png) |
-| **Intruder** — run sniper attacks across payload sets and compare status, size, time and response diffs. | **Terminal** — run nmap, ping, curl or any command in parallel tabs and split panes. |
+| **Intruder** - run sniper attacks across payload sets and compare status, size, time and response diffs. | **Terminal** - run nmap, ping, curl or any command in parallel tabs and split panes. |
 | [![Site map](screenshots/Screenshot_20261120_215501.png)](screenshots/Screenshot_20261120_215501.png) | [![Scanner](screenshots/Screenshot_20261120_215527.png)](screenshots/Screenshot_20261120_215527.png) |
-| **Site map** — crawl and discover URLs, then preview, replay or export the map. | **Scanner** — 54 vulnerability checks with presets and a description for every check. |
+| **Site map** - crawl and discover URLs, then preview, replay or export the map. | **Scanner** - 54 vulnerability checks with presets and a description for every check. |
 | [![Notes](screenshots/Screenshot_20261120_215549.png)](screenshots/Screenshot_20261120_215549.png) | [![AI analyst](screenshots/Screenshot_20261120_220647.png)](screenshots/Screenshot_20261120_220647.png) |
-| **Notes** — keep Markdown notes per project and ask the AI analyst to summarize or suggest next tests. | **AI analyst** — send flow context to a local or third-party model for a vulnerability sweep, verdict or fix. |
+| **Notes** - keep Markdown notes per project and ask the AI analyst to summarize or suggest next tests. | **AI analyst** - send flow context to a local or third-party model for a vulnerability sweep, verdict or fix. |
 
 ## Requirements
 

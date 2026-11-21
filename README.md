@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/ff3651ca-a712-461a-abf6-82956909cbda" alt="Kira logo" width="250">
+  <img src="screenshots/logo.png" alt="Kira logo" width="250">
   <h1>Kira</h1>
   <p><strong>Web Exploitation Suite</strong></p>
   <p>An intercepting HTTPS proxy plus a full offensive workbench:<br>

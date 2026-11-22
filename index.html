@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0b0c0e">
     <meta name="description" content="Kira is a local-first web exploitation suite for Linux: an intercepting HTTPS proxy, Repeater, Intruder, 54 vulnerability checks, 32 recon modules, 1,053 payloads and an opt-in AI analyst. No account, no telemetry, no cloud.">
     <meta property="og:title" content="Kira - Web Exploitation Suite">
     <meta property="og:description" content="Intercept, replay, fuzz and attack web traffic from a native Linux workbench. Local-first, self-contained, and built for authorized security testing.">
@@ -13,6 +13,9 @@
     <meta name="twitter:card" content="summary">
     <title>Kira - Web Exploitation Suite</title>
     <link rel="icon" href="screenshots/logo.png" type="image/png">
+    <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/cloister-black.woff" as="font" type="font/woff" crossorigin>
     <link rel="stylesheet" href="site.css">
     <script>document.documentElement.classList.add('js');</script>
     <script type="application/ld+json">
@@ -50,9 +53,10 @@
             <a href="#scanner">Scanner</a>
             <a href="#screenshots">Screenshots</a>
             <a href="#install">Install</a>
+            <a href="#guide">Guide</a>
             <a href="#privacy">Privacy</a>
             <a href="https://github.com/0xbitx" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="btn btn-primary btn-sm nav-dl" href="https://github.com/0xbitx/kira/kira" data-download>
+            <a class="btn btn-primary btn-sm nav-dl" href="https://github.com/0xbitx/kira/releases/latest" data-download>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
                 Download
             </a>
@@ -71,12 +75,13 @@
                 <h1 id="heroTitle">Intercept.<br>Replay.<br><span class="accent">Exploit.</span></h1>
                 <p class="hero-lead">Kira is a web exploitation suite for Linux. It puts an intercepting HTTPS proxy and a full offensive workbench on your desktop: capture, inspect, replay, fuzz and attack every request, then keep the whole engagement in its own project. No account. No telemetry. No cloud.</p>
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="https://github.com/0xbitx/kira/kira" data-download>
+                    <a class="btn btn-primary" href="https://github.com/0xbitx/kira/releases/latest" data-download>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
                         Download for Linux
                     </a>
                     <a class="btn btn-ghost" href="#install">Install with curl</a>
                 </div>
+                <p class="hero-guide-link"><a href="#guide">New to security testing? Follow the 10-step beginner's guide <span aria-hidden="true">&rarr;</span></a></p>
                 <ul class="hero-meta" aria-label="Highlights">
                     <li>Self-contained ELF</li>
                     <li>GTK 3 + WebKitGTK 4.1</li>
@@ -89,13 +94,13 @@
                 <div class="hero-glow" aria-hidden="true"></div>
                 <div class="term term-hero">
                     <div class="term-bar">
-                        <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span class="term-mark" aria-hidden="true"></span>
                         <span class="term-title">kira &middot; install</span>
                         <button class="term-copy" type="button" data-copy-target="#heroCommands" aria-label="Copy install commands">Copy</button>
                     </div>
                     <div class="term-body" id="heroCommands">
                         <div class="term-line comment"># download the latest Linux release</div>
-                        <div class="term-line"><span class="prompt">$</span>curl -LO https://github.com/0xbitx/kira/kira</div>
+                        <div class="term-line"><span class="prompt">$</span>curl -LO https://github.com/0xbitx/kira/releases/latest/download/kira</div>
                         <div class="term-line comment"># make it executable and launch</div>
                         <div class="term-line"><span class="prompt">$</span>chmod +x kira &amp;&amp; ./kira</div>
                         <div class="term-line term-gap" aria-hidden="true"></div>
@@ -134,7 +139,7 @@
             <div class="overview-copy reveal">
                 <p class="kicker">What it is</p>
                 <h2 id="overviewTitle">A full offensive workbench, built around the request.</h2>
-                <p class="lead">Kira sits between your browser and the target as a local HTTPS proxy. Trust the mitmproxy CA once, and every request and response is decrypted, captured and streamed into a native desktop window. Headers, bodies, status codes, timings, TLS details, cookies, query parameters and WebSocket frames are all available for inspection.</p>
+                <p class="lead">Kira sits between your browser and the target as a local HTTPS proxy. Trust Kira's CA once, and every request and response is decrypted, captured and streamed into a native desktop window. Headers, bodies, status codes, timings, TLS details, cookies, query parameters and WebSocket frames are all available for inspection.</p>
                 <p>From there the workbench takes over. Pause traffic with Intercept, replay and edit it in Repeater, fuzz it with Intruder, run 54 vulnerability checks and 32 recon modules, map the application, capture OAST callbacks and document findings in Notes. Projects keep each engagement separate, on disk or in memory.</p>
                 <div class="pill-row" aria-label="Main tools">
                     <span>Intercepting proxy</span>
@@ -177,8 +182,9 @@
                 <div class="mock-app" role="img" aria-label="Preview of the Kira dashboard showing captured requests, a live proxy indicator and a request inspector">
                     <div class="mock-top">
                         <div class="mock-brand">
-                            <img src="screenshots/logo.png" alt="" width="24" height="27">
-                            <span>Kira</span>
+                            <img src="screenshots/logo.png" alt="" width="22" height="25">
+                            <span class="mock-brand-name">Kira</span>
+                            <span class="mock-brand-sub">Web Exploitation Suite</span>
                         </div>
                         <div class="mock-top-right">
                             <span class="live-pill"><i aria-hidden="true"></i> LIVE</span>
@@ -685,7 +691,7 @@ Content-Type: application/json
                             <span class="step-num">04</span>
                             <div>
                                 <h3>Trust the CA</h3>
-                                <p>Download the mitmproxy CA from the dashboard footer or <code>/api/cert</code>, then trust it in your browser. HTTPS is decrypted locally.</p>
+                                <p>Download Kira's CA from the dashboard footer or <code>/api/cert</code>, then trust it in your browser. HTTPS is decrypted locally.</p>
                             </div>
                         </li>
                     </ol>
@@ -694,7 +700,8 @@ Content-Type: application/json
 
                 <div class="term term-install reveal">
                     <div class="term-bar">
-                        <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span class="term-mark" aria-hidden="true"></span>
+                        <span class="term-title">Kira</span>
                         <div class="term-tabs" role="tablist" aria-label="Install commands">
                             <button class="term-tab is-active" type="button" role="tab" aria-selected="true" data-term="download">download</button>
                             <button class="term-tab" type="button" role="tab" aria-selected="false" data-term="debian">debian</button>
@@ -705,7 +712,7 @@ Content-Type: application/json
                     </div>
                     <div class="term-body">
                         <pre class="term-pane is-active" data-pane="download"><span class="comment"># Kira v1.0.0, Linux x86-64</span>
-<span class="prompt">$</span> curl -LO https://github.com/0xbitx/kira/kira
+<span class="prompt">$</span> curl -LO https://github.com/0xbitx/kira/releases/latest/download/kira
 
 <span class="prompt">$</span> chmod +x kira
 <span class="prompt">$</span> ./kira
@@ -761,6 +768,681 @@ Content-Type: application/json
         </div>
     </section>
 
+    <section class="section section-guide" id="guide" aria-labelledby="guideTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Beginner's guide</p>
+                    <h2 id="guideTitle">From your URL to a confirmed finding.</h2>
+                </div>
+                <p class="section-note">A complete first test in ten small steps. Each step says what to click, what you should see, and what to do if it does not work. The screenshots show the real Kira window.</p>
+            </div>
+
+            <div class="guide-intro reveal">
+                <article class="guide-intro-card">
+                    <span class="guide-intro-label">You need</span>
+                    <h3>A site you own</h3>
+                    <p>Your own site, a staging copy, or written permission. Never test a site you do not control.</p>
+                </article>
+                <article class="guide-intro-card">
+                    <span class="guide-intro-label">Time</span>
+                    <h3>20&ndash;30 minutes</h3>
+                    <p>One page, one parameter, one confirmed issue. A small finished test beats a huge unfinished scan.</p>
+                </article>
+                <article class="guide-intro-card">
+                    <span class="guide-intro-label">You will produce</span>
+                    <h3>One clear finding</h3>
+                    <p>A repeatable request, a harmless proof, the impact, and a fix the developer can apply.</p>
+                </article>
+            </div>
+
+            <div class="guide-path reveal" role="group" aria-label="The testing path">
+                <span class="guide-path-step">Capture</span>
+                <span class="guide-path-arrow" aria-hidden="true">&rarr;</span>
+                <span class="guide-path-step">Scan</span>
+                <span class="guide-path-arrow" aria-hidden="true">&rarr;</span>
+                <span class="guide-path-step">Read</span>
+                <span class="guide-path-arrow" aria-hidden="true">&rarr;</span>
+                <span class="guide-path-step">Confirm</span>
+                <span class="guide-path-arrow" aria-hidden="true">&rarr;</span>
+                <span class="guide-path-step">Prove</span>
+                <span class="guide-path-arrow" aria-hidden="true">&rarr;</span>
+                <span class="guide-path-step">Fix &amp; report</span>
+            </div>
+
+            <nav class="guide-toc reveal" aria-label="Guide steps">
+                <a href="#guide-step-1"><span>01</span> Open a project</a>
+                <a href="#guide-step-2"><span>02</span> Proxy your browser</a>
+                <a href="#guide-step-3"><span>03</span> Capture traffic</a>
+                <a href="#guide-step-4"><span>04</span> Open the scanner</a>
+                <a href="#guide-step-5"><span>05</span> Run a safe pass</a>
+                <a href="#guide-step-6"><span>06</span> Read the report</a>
+                <a href="#guide-step-7"><span>07</span> Confirm in Repeater</a>
+                <a href="#guide-step-8"><span>08</span> Build a PoC</a>
+                <a href="#guide-step-9"><span>09</span> Fix and re-test</a>
+                <a href="#guide-step-10"><span>10</span> Write the report</a>
+            </nav>
+
+            <div class="guide-banner reveal" role="note">
+                <span class="guide-banner-mark" aria-hidden="true">!</span>
+                <div>
+                    <strong>Test only what you own.</strong>
+                    <p>Use a site you own or have written permission to test. For a live business site, use a staging copy and a test account. Testing someone else's website without permission is illegal in most countries, and an aggressive scan can change or delete real data. Stay on your own domain; do not scan third-party services or shared infrastructure you do not control.</p>
+                </div>
+            </div>
+
+            <div class="guide-target reveal" role="group" aria-label="Choosing your first target">
+                <div class="guide-target-head">
+                    <p class="kicker">Step 0 &middot; pick your target</p>
+                    <span class="guide-target-note">Write the exact URL down</span>
+                </div>
+                <div class="guide-target-bar">
+                    <span class="guide-target-method">URL</span>
+                    <code>https://your-site.example/search?q=test</code>
+                    <span class="guide-target-status"><i aria-hidden="true"></i> Owned or authorized</span>
+                </div>
+                <p>Use one page that takes input. The part after <code>?</code> is a parameter, and Kira's injection checks test parameters. A search page or product page is a better first target than a plain homepage. If you only have a homepage, add a harmless test parameter such as <code>?q=test</code>.</p>
+                <div class="guide-target-picks">
+                    <div class="guide-target-pick good">
+                        <span>Good first targets</span>
+                        <ul>
+                            <li>A search page: <code>/search?q=test</code></li>
+                            <li>A product page: <code>/product?id=1</code></li>
+                            <li>A login or contact form</li>
+                            <li>A staging copy with test data</li>
+                        </ul>
+                    </div>
+                    <div class="guide-target-pick bad">
+                        <span>Avoid on the first run</span>
+                        <ul>
+                            <li>Checkout and payment pages</li>
+                            <li>Delete, logout or password-change actions</li>
+                            <li>Admin actions that change state</li>
+                            <li>Third-party services you do not control</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-layout">
+                <ol class="guide-steps">
+                    <li class="guide-step reveal" id="guide-step-1">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">01</span>
+                            <div>
+                                <h3>Launch Kira and open a project</h3>
+                                <span class="guide-where">Project picker</span>
+                            </div>
+                            <span class="guide-step-time">1 min</span>
+                        </div>
+                        <p class="guide-goal">Goal: give this test its own project so every request is saved.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>Run <code>./kira</code> in a terminal. The dashboard opens at <code>127.0.0.1:8787</code>; the proxy listens on <code>127.0.0.1:8080</code>.</li>
+                                <li>Type a project name such as <code>my-site-2026-11</code> and click <strong>Create project</strong>. Use <strong>Start temporary</strong> only if you do not want anything written to disk.</li>
+                                <li>Keep the project open. Kira does not record traffic until a project is open.</li>
+                            </ol>
+                        </div>
+                        <figure class="guide-figure">
+                            <a class="guide-figure-link" href="screenshots/guide/01-project.png" target="_blank" rel="noopener noreferrer" title="Open the project picker screenshot full size">
+                                <span class="guide-figure-frame">
+                                    <img src="screenshots/guide/01-project.png" alt="Kira project picker with a project name field, Create project button and Start temporary button" width="1190" height="435" loading="lazy" decoding="async">
+                                    <span class="guide-callout" style="left: 2.5%; top: 79%;">1</span>
+                                    <span class="guide-callout" style="left: 90.8%; top: 73%;">2</span>
+                                    <span class="guide-callout" style="left: 83%; top: 91.4%;">3</span>
+                                </span>
+                            </a>
+                            <figcaption>
+                                <span class="guide-figure-label">Project picker</span>
+                                <p>1 Type a name. 2 Create the saved project. 3 Start temporary if nothing should be written to disk.</p>
+                            </figcaption>
+                        </figure>
+                        <p class="guide-expect"><span>You should see</span> An empty Proxy view, a green LIVE dot, and the project name in the header.</p>
+                        <p class="guide-hint"><strong>If it does not work:</strong> the dashboard may pick the next free port; use the URL printed in the terminal. If the window does not open, run Kira from a terminal and read the error.</p>
+                        <p class="guide-hint"><strong>Tip:</strong> use one project per site and date. Captures, notes and findings stay together.</p>
+                    </li>
+
+                    <li class="guide-step reveal" id="guide-step-2">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">02</span>
+                            <div>
+                                <h3>Put your browser behind Kira</h3>
+                                <span class="guide-where">Proxy &rarr; Open browser</span>
+                            </div>
+                            <span class="guide-step-time">2 min</span>
+                        </div>
+                        <p class="guide-goal">Goal: make your browser send traffic through Kira so it can be read.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>Open the <strong>Proxy</strong> workspace and click <strong>Open browser</strong>. Pick an installed Chromium-family browser or Firefox. Kira starts a temporary profile with the proxy and certificate configured.</li>
+                                <li>Prefer your normal browser? Set both the HTTP and HTTPS proxy to <code>127.0.0.1:8080</code>. Download the CA from the dashboard footer or <code>http://127.0.0.1:8787/api/cert</code>, then trust it.</li>
+                                <li>Disable QUIC/HTTP3 so pages cannot bypass the proxy. In Chrome, set <code>chrome://flags/#enable-quic</code> to <strong>Disabled</strong> and restart the browser.</li>
+                                <li>Open <code>https://example.com</code> as a quick test.</li>
+                            </ol>
+                        </div>
+                        <div class="guide-flow" role="img" aria-label="Your browser sends a request to the Kira proxy at 127.0.0.1:8080, which forwards it to your target site">
+                            <div class="guide-flow-node"><b>Your browser</b><span>temporary profile or manual proxy</span></div>
+                            <span class="guide-flow-arrow" aria-hidden="true">&rarr;</span>
+                            <div class="guide-flow-node"><b>Kira proxy</b><span>127.0.0.1:8080 &middot; decrypted locally</span></div>
+                            <span class="guide-flow-arrow" aria-hidden="true">&rarr;</span>
+                            <div class="guide-flow-node"><b>Your site</b><span>the target you own</span></div>
+                        </div>
+                        <p class="guide-expect"><span>You should see</span> The page loads normally and a request appears in Kira's traffic list.</p>
+                        <p class="guide-hint"><strong>If it does not work:</strong> a certificate warning means the CA is not trusted. A page that loads but never appears means the proxy is not set or QUIC is still on. Certificate-pinned apps will not show up.</p>
+                        <p class="guide-hint"><strong>Keep it local:</strong> the CA private key stays on your machine. Do not share it or install it on a machine you do not own.</p>
+                    </li>
+
+                    <li class="guide-step reveal" id="guide-step-3">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">03</span>
+                            <div>
+                                <h3>Visit your site and capture the request</h3>
+                                <span class="guide-where">Proxy &rarr; traffic list</span>
+                            </div>
+                            <span class="guide-step-time">3 min</span>
+                        </div>
+                        <p class="guide-goal">Goal: record the pages and actions you are allowed to test.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>Open your target URL in the proxied browser and log in with the test account.</li>
+                                <li>Use the site normally: open the main pages, submit a search, fill in a form. Each action becomes a row.</li>
+                                <li>Pick one request that carries input: a query parameter (<code>?q=test</code>, <code>?id=1</code>) or a form field. This is your test request.</li>
+                                <li>Click the row to inspect the request and response on the right: method, URL, headers, cookies, body, status and timing.</li>
+                            </ol>
+                        </div>
+                        <figure class="guide-figure">
+                            <a class="guide-figure-link" href="screenshots/guide/03-traffic.png" target="_blank" rel="noopener noreferrer" title="Open the captured traffic screenshot full size">
+                                <span class="guide-figure-frame">
+                                    <img src="screenshots/guide/03-traffic.png" alt="Kira Proxy traffic list with the filter bar, captured request rows and status, type, size and latency columns" width="1460" height="690" loading="lazy" decoding="async">
+                                    <span class="guide-callout" style="left: 3%; top: 9%;">1</span>
+                                    <span class="guide-callout" style="left: 3%; top: 28%;">2</span>
+                                    <span class="guide-callout" style="left: 88%; top: 28%;">3</span>
+                                </span>
+                            </a>
+                            <figcaption>
+                                <span class="guide-figure-label">Proxy &middot; example capture</span>
+                                <p>1 Filter the list. 2 Click a captured request. 3 Read its status, size and latency. Your rows will show your own site.</p>
+                            </figcaption>
+                        </figure>
+                        <p class="guide-expect"><span>You should see</span> Rows with method, host, path, status and size. Authenticated requests show a Cookie header.</p>
+                        <p class="guide-hint"><strong>If it does not work:</strong> clear the filter, turn <strong>Follow live</strong> back on, check that the proxy is still running, and refresh the page.</p>
+                        <p class="guide-hint"><strong>Tip:</strong> the scanner can reuse the cookies from a captured request, so log in before you scan.</p>
+                    </li>
+
+                    <li class="guide-step reveal" id="guide-step-4">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">04</span>
+                            <div>
+                                <h3>Open the scanner on the same request</h3>
+                                <span class="guide-where">Scan</span>
+                            </div>
+                            <span class="guide-step-time">1 min</span>
+                        </div>
+                        <p class="guide-goal">Goal: point the scanner at the page and session you just captured.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>Right-click the request and choose <strong>Scan request</strong>, or open <strong>Scan</strong> and paste the URL.</li>
+                                <li>Check <strong>Target URL</strong>. If you opened the scanner from a request, the URL and cookies are already filled in.</li>
+                                <li>Leave <strong>Jobs</strong> at <code>1</code> for the first run and <strong>Timeout</strong> at <code>10s</code>.</li>
+                                <li>Leave Tor routing off unless you specifically need it. Scans go directly to the target, not through the proxy.</li>
+                            </ol>
+                        </div>
+                        <figure class="guide-figure">
+                            <a class="guide-figure-link" href="screenshots/guide/04-scanner-setup.png" target="_blank" rel="noopener noreferrer" title="Open the scanner setup screenshot full size">
+                                <span class="guide-figure-frame">
+                                    <img src="screenshots/guide/04-scanner-setup.png" alt="Kira vulnerability scan setup with target URL, optional session cookies, timeout, jobs and preset buttons" width="1135" height="415" loading="lazy" decoding="async">
+                                    <span class="guide-callout" style="left: 22%; top: 38.3%;">1</span>
+                                    <span class="guide-callout" style="left: 22%; top: 55.4%;">2</span>
+                                    <span class="guide-callout" style="left: 86%; top: 55.4%;">3</span>
+                                    <span class="guide-callout" style="left: 52%; top: 80.4%;">4</span>
+                                </span>
+                            </a>
+                            <figcaption>
+                                <span class="guide-figure-label">Scanner setup</span>
+                                <p>1 Target URL. 2 Optional session cookies. 3 Timeout and jobs. 4 Preset buttons, including Core.</p>
+                            </figcaption>
+                        </figure>
+                        <p class="guide-expect"><span>You should see</span> The target URL, optional cookies, timeout, jobs, preset buttons and the check list.</p>
+                        <p class="guide-hint"><strong>If it does not work:</strong> the URL needs <code>http://</code> or <code>https://</code>. For a local app, use <code>http://127.0.0.1:3000</code> and make sure it is running.</p>
+                        <p class="guide-hint"><strong>Keep it small:</strong> a scan sends real requests to the target. Watch rate limits and never point it at shared infrastructure.</p>
+                    </li>
+
+                    <li class="guide-step reveal" id="guide-step-5">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">05</span>
+                            <div>
+                                <h3>Run a safe first pass</h3>
+                                <span class="guide-where">Scan &rarr; Core preset</span>
+                            </div>
+                            <span class="guide-step-time">2&ndash;5 min</span>
+                        </div>
+                        <p class="guide-goal">Goal: get a first report without flooding the site.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>Click <strong>Core</strong>. It selects cheap, high-signal checks: security headers, CORS, open redirect, sensitive files, XSS, SQLi and a few safe probes.</li>
+                                <li>Read the selected count. For a first run, 10&ndash;20 checks is plenty.</li>
+                                <li>Press <strong>Run scan</strong> and watch the status line. Do not close the window.</li>
+                                <li>If the site slows down, press <strong>Cancel</strong>, lower <strong>Jobs</strong> to 1, and run a smaller preset.</li>
+                            </ol>
+                        </div>
+                        <figure class="guide-figure">
+                            <a class="guide-figure-link" href="screenshots/guide/05-scanner-checks.png" target="_blank" rel="noopener noreferrer" title="Open the scanner check list screenshot full size">
+                                <span class="guide-figure-frame">
+                                    <img src="screenshots/guide/05-scanner-checks.png" alt="Kira scanner check list with 54 available checks, preset buttons and the Run scan button" width="1135" height="1000" loading="lazy" decoding="async">
+                                    <span class="guide-callout" style="left: 58.5%; top: 9.9%;">1</span>
+                                    <span class="guide-callout" style="left: 2%; top: 18.5%;">2</span>
+                                    <span class="guide-callout" style="left: 9.5%; top: 93.5%;">3</span>
+                                </span>
+                            </a>
+                            <figcaption>
+                                <span class="guide-figure-label">Scanner checks</span>
+                                <p>1 Click Core for the first pass. 2 The list shows what will run. 3 Run scan starts the selected checks.</p>
+                            </figcaption>
+                        </figure>
+                        <p class="guide-expect"><span>You should see</span> Checks move from pending to done, and findings appear grouped by check.</p>
+                        <div class="guide-presets">
+                            <p class="guide-presets-head"><strong>Which preset?</strong> Start with Core. Add one preset at a time instead of selecting everything.</p>
+                            <dl class="guide-preset-grid">
+                                <div><dt>Core</dt><dd>First pass: headers, CORS, redirects, files, XSS and SQLi.</dd></div>
+                                <div><dt>Web</dt><dd>Application checks for normal pages and forms.</dd></div>
+                                <div><dt>API</dt><dd>JSON endpoints and API-shaped requests.</dd></div>
+                                <div><dt>SQLi</dt><dd>More database payloads when SQLi is plausible.</dd></div>
+                                <div><dt>CMS</dt><dd>WordPress, Joomla and Drupal specifics.</dd></div>
+                                <div><dt>WAF</dt><dd>Detect a firewall or filtering layer.</dd></div>
+                                <div><dt>Tech</dt><dd>Fingerprint the server and framework.</dd></div>
+                                <div><dt>Recon</dt><dd>Map visible pages and paths.</dd></div>
+                                <div class="guide-preset-warn"><dt>All</dt><dd>Staging only. Slow and noisy; not for a first run.</dd></div>
+                            </dl>
+                        </div>
+                        <p class="guide-hint"><strong>If it does not work:</strong> a skipped check means a tool is missing or the check does not apply. It is not a failure. A scan that finds nothing is not proof of safety.</p>
+                    </li>
+
+                    <li class="guide-step reveal" id="guide-step-6">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">06</span>
+                            <div>
+                                <h3>Read the report without panicking</h3>
+                                <span class="guide-where">Scan &rarr; results</span>
+                            </div>
+                            <span class="guide-step-time">5 min</span>
+                        </div>
+                        <p class="guide-goal">Goal: separate real issues from noise and pick one candidate.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>Filter to <strong>Critical</strong> and <strong>High</strong> first.</li>
+                                <li>Click a finding and read its message and evidence: a header, a reflected value, an error, or a timing difference.</li>
+                                <li>Treat <strong>skipped</strong> as &ldquo;not tested&rdquo;, not &ldquo;safe&rdquo;. Treat <strong>Info</strong> as context, not a vulnerability.</li>
+                                <li>Pick one candidate and write down the URL, parameter, check name and evidence.</li>
+                                <li>Do not report it yet. You will confirm it by hand in the next step.</li>
+                            </ol>
+                        </div>
+                        <div class="guide-anatomy" role="group" aria-label="Example finding and what each part means">
+                            <div class="guide-anatomy-head"><i aria-hidden="true"></i> Example finding: your values will differ</div>
+                            <dl class="guide-anatomy-body">
+                                <div class="guide-anatomy-row"><dt>Severity</dt><dd><span class="sev">High</span></dd></div>
+                                <div class="guide-anatomy-row"><dt>Check</dt><dd>Reflected XSS</dd></div>
+                                <div class="guide-anatomy-row"><dt>Where</dt><dd><code>https://your-site.example/search?q=test</code></dd></div>
+                                <div class="guide-anatomy-row"><dt>Evidence</dt><dd>The marker <code>&lt;b&gt;proof&lt;/b&gt;</code> came back unencoded in the response body.</dd></div>
+                                <div class="guide-anatomy-row"><dt>Why it matters</dt><dd>A crafted link can run script in a visitor's browser.</dd></div>
+                                <div class="guide-anatomy-row"><dt>Next</dt><dd>Confirm it in Repeater with the same request.</dd></div>
+                            </dl>
+                        </div>
+                        <p class="guide-expect"><span>You should see</span> A short list you can explain in one sentence each.</p>
+                        <p class="guide-hint"><strong>If it does not work:</strong> no findings? Try a URL with a parameter, log in first, use the Web or API preset, or map the site to find more pages. A quiet scan is not a clean bill of health.</p>
+                        <p class="guide-hint"><strong>False positive:</strong> a warning that does not reproduce when you test it by hand. Do not report it as a bug.</p>
+                    </li>
+
+                    <li class="guide-step reveal" id="guide-step-7">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">07</span>
+                            <div>
+                                <h3>Confirm the finding by hand in Repeater</h3>
+                                <span class="guide-where">Right-click &rarr; Send to Repeater</span>
+                            </div>
+                            <span class="guide-step-time">5 min</span>
+                        </div>
+                        <p class="guide-goal">Goal: turn a scanner warning into a proven bug.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>Right-click the original request and choose <strong>Send to Repeater</strong>.</li>
+                                <li>Find the parameter named in the finding. Change only that value.</li>
+                                <li>Use a harmless marker first: <code>&lt;b&gt;proof&lt;/b&gt;</code> for reflected HTML, a single quote <code>'</code> for a database error, or <code>https://example.com</code> for an open redirect.</li>
+                                <li>Press <strong>Send</strong> and compare the response with the original.</li>
+                                <li>Send it two or three times. A real bug behaves the same way each time.</li>
+                            </ol>
+                        </div>
+                        <figure class="guide-figure">
+                            <a class="guide-figure-link" href="screenshots/guide/07-context.png" target="_blank" rel="noopener noreferrer" title="Open the request actions screenshot full size">
+                                <span class="guide-figure-frame">
+                                    <img src="screenshots/guide/07-context.png" alt="Right-click menu on a captured request with Send to Repeater, Send to Intruder and Scan request actions" width="1060" height="520" loading="lazy" decoding="async">
+                                    <span class="guide-callout" style="left: 2%; top: 18%;">1</span>
+                                    <span class="guide-callout" style="left: 47%; top: 28%;">2</span>
+                                    <span class="guide-callout" style="left: 47%; top: 57%;">3</span>
+                                </span>
+                            </a>
+                            <figcaption>
+                                <span class="guide-figure-label">Send to Repeater</span>
+                                <p>1 Right-click the captured request. 2 Send to Repeater keeps the exact request. 3 Scan request opens the scanner with the same session.</p>
+                            </figcaption>
+                        </figure>
+                        <figure class="guide-figure">
+                            <a class="guide-figure-link" href="screenshots/guide/07-repeater.png" target="_blank" rel="noopener noreferrer" title="Open the Repeater screenshot full size">
+                                <span class="guide-figure-frame">
+                                    <img src="screenshots/guide/07-repeater.png" alt="Kira Repeater with an editable request, Send button, request headers and response controls" width="1135" height="655" loading="lazy" decoding="async">
+                                    <span class="guide-callout" style="left: 4%; top: 17%;">1</span>
+                                    <span class="guide-callout" style="left: 61%; top: 17%;">2</span>
+                                    <span class="guide-callout" style="left: 3%; top: 33%;">3</span>
+                                </span>
+                            </a>
+                            <figcaption>
+                                <span class="guide-figure-label">Repeater</span>
+                                <p>1 Edit only the value named in the finding. 2 Press Send. 3 Read the response on the right.</p>
+                            </figcaption>
+                        </figure>
+                        <p class="guide-expect"><span>You should see</span> The marker appears unencoded, a database error appears, or the response redirects. The same result every time.</p>
+                        <p class="guide-hint"><strong>If it does not work:</strong> the warning may be a false positive. Check the cookie, the parameter name, the encoding and the request method. Try the payload with URL encoding.</p>
+                        <p class="guide-hint"><strong>Stop at proof:</strong> one bold marker, one error, one redirect. Do not dump tables, read other users' data, or change records.</p>
+                    </li>
+
+                    <li class="guide-step reveal" id="guide-step-8">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">08</span>
+                            <div>
+                                <h3>Turn it into a harmless proof of concept</h3>
+                                <span class="guide-where">Exploit &rarr; PoC / Intruder</span>
+                            </div>
+                            <span class="guide-step-time">5&ndash;10 min</span>
+                        </div>
+                        <p class="guide-goal">Goal: produce repeatable evidence you can show to a developer.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>Open <strong>Exploit &rarr; PoC</strong> in Repeater. It builds a runnable card and curl command for XSS, SQLi, CORS, CSRF, clickjacking, SSRF or XXE.</li>
+                                <li>For blind bugs, open <strong>OAST</strong> and use the callback URL. A hit proves the target contacted you.</li>
+                                <li>To try several values, right-click the request &rarr; <strong>Send to Intruder</strong>. Mark the value with <code>&sect;</code>, load a small payload list, and keep threads at <code>1</code>.</li>
+                                <li>Save the exact request, the response and a screenshot.</li>
+                            </ol>
+                        </div>
+                        <figure class="guide-figure">
+                            <a class="guide-figure-link" href="screenshots/guide/08-intruder.png" target="_blank" rel="noopener noreferrer" title="Open the Intruder screenshot full size">
+                                <span class="guide-figure-frame">
+                                    <img src="screenshots/guide/08-intruder.png" alt="Kira Intruder with attack type, session URL, payload set and Start attack controls" width="835" height="575" loading="lazy" decoding="async">
+                                    <span class="guide-callout" style="left: 3%; top: 18%;">1</span>
+                                    <span class="guide-callout" style="left: 3%; top: 42%;">2</span>
+                                    <span class="guide-callout" style="left: 3%; top: 92%;">3</span>
+                                </span>
+                            </a>
+                            <figcaption>
+                                <span class="guide-figure-label">Intruder</span>
+                                <p>1 Pick the attack type. 2 Load a small payload set. 3 Start attack sends one value at a time.</p>
+                            </figcaption>
+                        </figure>
+                        <p class="guide-expect"><span>You should see</span> A PoC card, a curl command, a callback hit, or a clear response difference.</p>
+                        <p class="guide-hint"><strong>If it does not work:</strong> check the encoding, the parameter name and the session cookie. Slow down and use fewer payloads.</p>
+                        <p class="guide-hint"><strong>Stop at proof:</strong> one alert, one error, one callback or one redirect is enough. Do not exfiltrate data, upload a shell, or delete or change records.</p>
+                    </li>
+
+                    <li class="guide-step reveal" id="guide-step-9">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">09</span>
+                            <div>
+                                <h3>Fix it, then re-test the same request</h3>
+                                <span class="guide-where">Repeater + Comparator</span>
+                            </div>
+                            <span class="guide-step-time">varies</span>
+                        </div>
+                        <p class="guide-goal">Goal: confirm the fix actually closes the issue.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>Send the developer the URL, parameter, exact request, response evidence, impact and the recommended root-cause fix.</li>
+                                <li>Ask for the root-cause fix: parameterized queries, output encoding, redirect allow-lists, access checks or safer headers.</li>
+                                <li>After the fix, send the exact same Repeater request and run the same scanner check.</li>
+                                <li>Compare the before and after responses in <strong>Comparator</strong>.</li>
+                            </ol>
+                        </div>
+                        <figure class="guide-figure">
+                            <a class="guide-figure-link" href="screenshots/guide/09-comparator.png" target="_blank" rel="noopener noreferrer" title="Open the Comparator screenshot full size">
+                                <span class="guide-figure-frame">
+                                    <img src="screenshots/guide/09-comparator.png" alt="Kira Comparator showing two responses side by side with removed and added lines highlighted" width="1705" height="575" loading="lazy" decoding="async">
+                                    <span class="guide-callout" style="left: 3%; top: 14%;">1</span>
+                                    <span class="guide-callout" style="left: 94%; top: 14%;">2</span>
+                                    <span class="guide-callout" style="left: 78%; top: 23%;">3</span>
+                                </span>
+                            </a>
+                            <figcaption>
+                                <span class="guide-figure-label">Comparator</span>
+                                <p>1 Pick the before and after flows. 2 Compare them. 3 Removed and added lines show exactly what changed.</p>
+                            </figcaption>
+                        </figure>
+                        <p class="guide-expect"><span>You should see</span> The old payload now fails or is neutralized, while normal site behavior still works.</p>
+                        <p class="guide-hint"><strong>If it does not work:</strong> the fix may be partial. Re-test variants and encodings. Do not publish the finding as fixed until the old proof fails.</p>
+                        <p class="guide-hint"><strong>If it is Critical:</strong> stop testing and tell the site owner immediately.</p>
+                    </li>
+
+                    <li class="guide-step reveal" id="guide-step-10">
+                        <div class="guide-step-head">
+                            <span class="guide-step-num" aria-hidden="true">10</span>
+                            <div>
+                                <h3>Write it down and export the report</h3>
+                                <span class="guide-where">Findings / Notes</span>
+                            </div>
+                            <span class="guide-step-time">5 min</span>
+                        </div>
+                        <p class="guide-goal">Goal: leave one clear finding a developer can reproduce.</p>
+                        <div class="guide-do">
+                            <p class="guide-do-label">Do this</p>
+                            <ol>
+                                <li>In Repeater, open <strong>Exploit &rarr; Findings</strong>. Add a title, severity and short notes, then press <strong>Capture current</strong>.</li>
+                                <li>Use <strong>Copy Markdown</strong> or <strong>Export HTML</strong>.</li>
+                                <li>In <strong>Notes</strong>, keep a short timeline and the fix status.</li>
+                                <li>Include the summary, URL, parameter, steps to reproduce, request/response, impact, fix and evidence.</li>
+                            </ol>
+                        </div>
+                        <figure class="guide-figure">
+                            <a class="guide-figure-link" href="screenshots/guide/10-notes.png" target="_blank" rel="noopener noreferrer" title="Open the Notes screenshot full size">
+                                <span class="guide-figure-frame">
+                                    <img src="screenshots/guide/10-notes.png" alt="Kira Notes with the note list, Markdown editor and export actions" width="2005" height="385" loading="lazy" decoding="async">
+                                    <span class="guide-callout" style="left: 2%; top: 30%;">1</span>
+                                    <span class="guide-callout" style="left: 14%; top: 20%;">2</span>
+                                    <span class="guide-callout" style="left: 94%; top: 18%;">3</span>
+                                </span>
+                            </a>
+                            <figcaption>
+                                <span class="guide-figure-label">Notes</span>
+                                <p>1 Keep one note per finding. 2 Write in Markdown. 3 The top-right actions copy or export the report.</p>
+                            </figcaption>
+                        </figure>
+                        <p class="guide-expect"><span>You should see</span> One finding a developer can reproduce without asking you questions.</p>
+                        <pre class="guide-report"><code>Title: Reflected XSS in q
+Severity: High
+URL: https://your-site.example/search?q=test
+Parameter: q
+
+Steps to reproduce:
+1. Send GET /search?q=&lt;b&gt;proof&lt;/b&gt;
+2. Observe &lt;b&gt;proof&lt;/b&gt; returned unencoded
+
+Evidence:
+&lt;request and response&gt;
+
+Impact:
+A crafted link can run script in a visitor's browser.
+
+Fix:
+Encode output for the HTML context and add a CSP.
+
+Status: Fixed and re-tested 2026-11-22</code></pre>
+                        <p class="guide-hint"><strong>If it does not work:</strong> keep the raw request and response plus a screenshot. That is enough for a first report.</p>
+                    </li>
+                </ol>
+
+                <aside class="guide-side" aria-label="Beginner reference">
+                    <div class="guide-side-card reveal">
+                        <p class="kicker">Plain English</p>
+                        <h3>The words on screen</h3>
+                        <dl class="guide-glossary">
+                            <div>
+                                <dt>Target URL</dt>
+                                <dd>The exact page you are testing, including the <code>?parameter=value</code> part.</dd>
+                            </div>
+                            <div>
+                                <dt>Parameter</dt>
+                                <dd>An input the site accepts, such as <code>?id=1</code> or a form field.</dd>
+                            </div>
+                            <div>
+                                <dt>Scope</dt>
+                                <dd>The domains and pages you are allowed to test. Stay inside it.</dd>
+                            </div>
+                            <div>
+                                <dt>Proxy</dt>
+                                <dd>A local middleman that records requests between your browser and the site.</dd>
+                            </div>
+                            <div>
+                                <dt>Request / response</dt>
+                                <dd>What your browser sends, and what the site sends back.</dd>
+                            </div>
+                            <div>
+                                <dt>Payload</dt>
+                                <dd>A small test input used to see how the site handles unexpected data.</dd>
+                            </div>
+                            <div>
+                                <dt>Encoding</dt>
+                                <dd>How special characters are written in a URL or HTML. Wrong encoding can hide a real bug.</dd>
+                            </div>
+                            <div>
+                                <dt>False positive</dt>
+                                <dd>A warning that does not reproduce when you test it by hand.</dd>
+                            </div>
+                            <div>
+                                <dt>PoC</dt>
+                                <dd>Proof of concept: the smallest repeatable evidence that a bug is real.</dd>
+                            </div>
+                            <div>
+                                <dt>OAST</dt>
+                                <dd>An outside callback that proves a blind bug made the target contact you.</dd>
+                            </div>
+                            <div>
+                                <dt>XSS / SQLi</dt>
+                                <dd>Script injection in a page / database injection through an input.</dd>
+                            </div>
+                            <div>
+                                <dt>CSRF / CORS</dt>
+                                <dd>A forged action from another site / a rule for which sites may read a response.</dd>
+                            </div>
+                            <div>
+                                <dt>SSRF / IDOR</dt>
+                                <dd>Making the server fetch a URL / reading another user's object by changing an ID.</dd>
+                            </div>
+                            <div>
+                                <dt>Severity</dt>
+                                <dd>An estimate of impact, not a guarantee. Confirm before reporting.</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <div class="guide-side-card guide-rules reveal">
+                        <p class="kicker">Five rules</p>
+                        <h3>Stay safe and legal</h3>
+                        <ol>
+                            <li><strong>Permission first.</strong> Own the site or carry written authorization.</li>
+                            <li><strong>Use staging.</strong> Prefer a copy and a test account over live customer data.</li>
+                            <li><strong>Read-only first.</strong> Avoid delete, payment and password-change actions.</li>
+                            <li><strong>Keep the load low.</strong> Jobs at 1, short runs, and watch rate limits.</li>
+                            <li><strong>Stop at proof.</strong> Report the issue; do not keep escalating.</li>
+                        </ol>
+                    </div>
+
+                    <div class="guide-side-card reveal">
+                        <p class="kicker">Where things are</p>
+                        <h3>Workspace map</h3>
+                        <ul class="guide-workspaces">
+                            <li><b>Proxy</b><span>capture traffic</span></li>
+                            <li><b>Repeater</b><span>edit and resend</span></li>
+                            <li><b>Intruder</b><span>fuzz one value</span></li>
+                            <li><b>Scanner</b><span>automated checks</span></li>
+                            <li><b>Comparator</b><span>diff responses</span></li>
+                            <li><b>Site map</b><span>discover pages</span></li>
+                            <li><b>Notes</b><span>write the report</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-side-card guide-nothing reveal">
+                        <p class="kicker">If the scan is quiet</p>
+                        <h3>Try a better target</h3>
+                        <ul>
+                            <li>Scan a URL with a parameter, such as <code>/search?q=test</code>. Injection checks only test query parameters.</li>
+                            <li>Log in through the proxy first, then open <strong>Scan</strong> from a captured request so cookies are reused.</li>
+                            <li>Try the <strong>Web</strong> or <strong>API</strong> preset, and use the <strong>Site map</strong> workspace to find more pages.</li>
+                            <li>No findings is not proof of safety. It means the selected checks found nothing.</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="guide-severity reveal" aria-labelledby="guideSeverityTitle">
+                <div class="guide-severity-head">
+                    <p class="kicker">Reading results</p>
+                    <h3 id="guideSeverityTitle">What the severity labels mean</h3>
+                    <p>Kira ranks each finding by likely impact. Start at the top and confirm the issue by hand before you report it.</p>
+                </div>
+                <div class="guide-severity-grid">
+                    <div class="guide-sev sev-critical">
+                        <span>Critical</span>
+                        <p>Immediate danger: remote code execution, authentication bypass, exposed admin access or live secrets. Fix before anything else.</p>
+                    </div>
+                    <div class="guide-sev sev-high">
+                        <span>High</span>
+                        <p>Serious: SQL injection, cross-site scripting with real impact, broken access control or exposed sensitive files. Can lead to data or account compromise.</p>
+                    </div>
+                    <div class="guide-sev sev-medium">
+                        <span>Medium</span>
+                        <p>Real but conditional: reflected XSS, CSRF gaps, open redirect or weak CORS. Usually needs a user or a specific setup.</p>
+                    </div>
+                    <div class="guide-sev sev-low">
+                        <span>Low</span>
+                        <p>Hardening: cookie flags, missing headers, verbose errors or directory listing. Fix after the higher risks.</p>
+                    </div>
+                    <div class="guide-sev sev-info">
+                        <span>Info</span>
+                        <p>Context, not a vulnerability: technology versions, DNS, TLS details. Useful for planning, not a finding by itself.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-checklist-block reveal" aria-label="Before you call the test done">
+                <p class="kicker">Before you call it done</p>
+                <ul class="guide-checklist">
+                    <li><strong>Permission.</strong> I used a site I own or have written permission to test.</li>
+                    <li><strong>Capture.</strong> I recorded the request through Kira.</li>
+                    <li><strong>Confirm.</strong> I reproduced the issue by hand in Repeater.</li>
+                    <li><strong>Proof.</strong> I have a harmless PoC that works every time.</li>
+                    <li><strong>Report.</strong> I wrote the impact and the recommended fix.</li>
+                    <li><strong>Re-test.</strong> I confirmed the old proof fails after the fix.</li>
+                </ul>
+            </div>
+
+            <div class="guide-outro reveal">
+                <div>
+                    <p class="kicker">One complete result</p>
+                    <h3>You do not need to find everything on the first run.</h3>
+                    <p>Pick one page, one parameter and one confirmed issue. Fix it, re-test it, and write it down. That is a successful security test, and a much better outcome than a long list of unverified scanner warnings.</p>
+                </div>
+                <div class="guide-outro-actions">
+                    <a class="btn btn-primary" href="https://github.com/0xbitx/kira/releases/latest" data-download>Download Kira</a>
+                    <a class="btn btn-ghost" href="#install">Install steps</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section section-alt" id="privacy" aria-labelledby="privacyTitle">
         <div class="container privacy-grid">
             <div class="privacy-copy reveal">
@@ -802,7 +1484,7 @@ Content-Type: application/json
                     <p>Download the self-contained Linux build and start with a temporary project in under a minute.</p>
                 </div>
                 <div class="cta-actions">
-                    <a class="btn btn-primary" href="https://github.com/0xbitx/kira/kira" data-download>
+                    <a class="btn btn-primary" href="https://github.com/0xbitx/kira/releases/latest" data-download>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
                         Download v1.0.0
                     </a>
@@ -835,6 +1517,7 @@ Content-Type: application/json
             <a href="#scanner">Scanner</a>
             <a href="#screenshots">Screenshots</a>
             <a href="#install">Install</a>
+            <a href="#guide">Beginner's guide</a>
         </div>
 
         <div class="footer-col">
@@ -847,7 +1530,6 @@ Content-Type: application/json
         <div class="footer-col">
             <h4>Creator</h4>
             <a href="https://github.com/0xbitx" target="_blank" rel="noopener noreferrer">0xbit on GitHub</a>
-            <a href="https://mitmproxy.org/" target="_blank" rel="noopener noreferrer">mitmproxy</a>
         </div>
     </div>
 
